@@ -1,8 +1,9 @@
-//src\components\todoForm.tsx
+// src/components/todoForm.tsx
 import React, { useState } from 'react';
 
 type TodoFormProps = {
   onClose: () => void;
+  onSubmit: (task: { title: string; description: string; tags: string[] }) => void;
 };
 
 type TagsType = {
@@ -12,7 +13,7 @@ type TagsType = {
   family: boolean;
 };
 
-export const TodoForm: React.FC<TodoFormProps> = ({ onClose }) => {
+export const TodoForm: React.FC<TodoFormProps> = ({ onClose, onSubmit }) => {
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [tags, setTags] = useState<TagsType>({
@@ -35,7 +36,7 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onClose }) => {
       description,
       tags: Object.keys(tags).filter((tag) => tags[tag as keyof TagsType]),
     };
-    console.log('Form Data:', formData);
+    onSubmit(formData);  // Pass the data back to TodoCard
 
     setTitle('');
     setDescription('');
@@ -53,26 +54,20 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onClose }) => {
   };
 
   return (
-    <div className="absolute w-full h-screen flex justify-center items-center bg-opacity-50 bg-black left-0 top-0 " >
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col max-w-lg w-full bg-white overflow-hidden p-8 space-y-4 rounded-lg"
-      >
+    <div className="absolute w-full h-screen flex justify-center items-center bg-opacity-50 bg-black left-0 top-0">
+      <form onSubmit={handleSubmit} className="flex flex-col max-w-lg w-full bg-white overflow-hidden p-8 space-y-4 rounded-lg">
         <div className="flex flex-row w-full justify-between">
           <button type="button" className="font-semibold capitalize text-gray-500" onClick={onClose}>
             Cancel
           </button>
-          <button
-            type="submit"
-            className="bg-gray-500 text-white p-1 px-4 rounded-md hover:bg-gray-600 focus:bg-gray-600"
-          >
+          <button type="submit" className="bg-gray-500 text-white p-1 px-4 rounded-md hover:bg-gray-600 focus:bg-gray-600">
             Add
           </button>
         </div>
 
         {error && <p className="text-red-500 text-sm">{error}</p>}
 
-        <label className='font-semibold font-mono text-stone-600 text-xl' htmlFor="title">Title</label>
+        <label className="font-semibold font-mono text-stone-600 text-xl" htmlFor="title">Title</label>
         <input
           type="text"
           placeholder="add a title"
@@ -83,7 +78,7 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onClose }) => {
           onChange={(e) => setTitle(e.target.value)}
         />
 
-        <label className='font-semibold font-mono text-stone-600 text-xl' htmlFor="description">Description</label>
+        <label className="font-semibold font-mono text-stone-600 text-xl" htmlFor="description">Description</label>
         <textarea
           placeholder="add a description"
           className="p-2 border rounded-md text-stone-600 font-mono"
@@ -92,10 +87,9 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onClose }) => {
           onChange={(e) => setDescription(e.target.value)}
         />
 
-        <label className='font-semibold font-mono text-stone-600 text-xl' htmlFor="tags">Tags</label>
+        <label className="font-semibold font-mono text-stone-600 text-xl" htmlFor="tags">Tags</label>
         <div className="flex flex-row gap-x-2">
-
-          <label
+        <label
             htmlFor="work"
             className={`relative inline-flex items-center cursor-pointer gap-x-1 px-2 py-1 rounded-lg ${
               tags.work ? 'bg-blue-200' : 'bg-gray-100'
