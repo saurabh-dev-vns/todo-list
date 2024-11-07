@@ -54,13 +54,13 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onClose, onSubmit }) => {
   };
 
   return (
-    <div className="absolute w-full h-screen flex justify-center items-center bg-opacity-50 bg-black left-0 top-0">
-      <form onSubmit={handleSubmit} className="flex flex-col max-w-lg w-full bg-white overflow-hidden p-8 space-y-4 rounded-lg">
+    <div className="absolute w-full h-screen flex justify-center items-center bg-opacity-50 bg-black left-0 top-0 transition-all duration-500 ease-in-out">
+      <form onSubmit={handleSubmit} className="flex flex-col max-w-lg w-full m-2 sm:m-0 bg-white overflow-hidden p-8 space-y-4 rounded-lg transition-all duration-500 ease-in-out transform">
         <div className="flex flex-row w-full justify-between">
           <button type="button" className="font-semibold capitalize text-gray-500" onClick={onClose}>
             Cancel
           </button>
-          <button type="submit" className="bg-gray-500 text-white p-1 px-4 rounded-md hover:bg-gray-600 focus:bg-gray-600">
+          <button type="submit" className="bg-gray-500 text-white p-1 px-4 rounded-md hover:bg-gray-600 focus:bg-gray-600 transition-all duration-300 ease-in-out">
             Add
           </button>
         </div>
@@ -71,8 +71,7 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onClose, onSubmit }) => {
         <input
           type="text"
           placeholder="add a title"
-          className="p-2 border rounded-md text-stone-600 font-mono"
-          autoFocus
+          className="p-2 border rounded-md text-stone-600 font-mono transition-all duration-300 ease-in-out"
           id="title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
@@ -81,7 +80,7 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onClose, onSubmit }) => {
         <label className="font-semibold font-mono text-stone-600 text-xl" htmlFor="description">Description</label>
         <textarea
           placeholder="add a description"
-          className="p-2 border rounded-md text-stone-600 font-mono"
+          className="p-2 border rounded-md text-stone-600 font-mono transition-all duration-300 ease-in-out"
           id="description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
@@ -89,77 +88,26 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onClose, onSubmit }) => {
 
         <label className="font-semibold font-mono text-stone-600 text-xl" htmlFor="tags">Tags</label>
         <div className="flex flex-row gap-x-2">
-        <label
-            htmlFor="work"
-            className={`relative inline-flex items-center cursor-pointer gap-x-1 px-2 py-1 rounded-lg ${
-              tags.work ? 'bg-blue-200' : 'bg-gray-100'
-            }`}
-          >
-            <input
-              type="checkbox"
-              className="sr-only "
-              name="work"
-              id="work"
-              checked={tags.work}
-              onChange={handleTagChange}
-            />
-            <span className="w-5 h-5 bg-purple-400 rounded-full"></span>
-            <span>work</span>
-          </label>
-
-          <label
-            htmlFor="study"
-            className={`relative inline-flex items-center cursor-pointer gap-x-1 px-2 py-1 rounded-lg ${
-              tags.study ? 'bg-blue-200' : 'bg-gray-100'
-            }`}
-          >
-            <input
-              type="checkbox"
-              className="sr-only"
-              name="study"
-              id="study"
-              checked={tags.study}
-              onChange={handleTagChange}
-            />
-            <span className="w-5 h-5 bg-sky-400 rounded-full"></span>
-            <span>study</span>
-          </label>
-
-          <label
-            htmlFor="entertainment"
-            className={`relative inline-flex items-center cursor-pointer gap-x-1 px-2 py-1 rounded-lg ${
-              tags.entertainment ? 'bg-blue-200' : 'bg-gray-100'
-            }`}
-          >
-            <input
-              type="checkbox"
-              className="sr-only"
-              name="entertainment"
-              id="entertainment"
-              checked={tags.entertainment}
-              onChange={handleTagChange}
-            />
-            <span className="w-5 h-5 bg-pink-400 rounded-full"></span>
-            <span>entertainment</span>
-          </label>
-
-          <label
-            htmlFor="family"
-            className={`relative inline-flex items-center cursor-pointer gap-x-1 px-2 py-1 rounded-lg ${
-              tags.family ? 'bg-blue-200' : 'bg-gray-100'
-            }`}
-          >
-            <input
-              type="checkbox"
-              className="sr-only"
-              name="family"
-              id="family"
-              checked={tags.family}
-              onChange={handleTagChange}
-            />
-            <span className="w-5 h-5 bg-green-400 rounded-full"></span>
-            <span>family</span>
-          </label>
+          {['work', 'study', 'entertainment', 'family'].map((tag) => (
+            <label
+              key={tag}
+              htmlFor={tag}
+              className={`relative inline-flex items-center cursor-pointer gap-x-1 px-2 py-1 rounded-lg transition-all duration-300 ease-in-out ${
+                tags[tag as keyof TagsType] ? 'bg-blue-200' : 'bg-gray-100'
+              }`}
+            >
+              <input
+                type="checkbox"
+                className="sr-only"
+                name={tag}
+                id={tag}
+                checked={tags[tag as keyof TagsType]}
+                onChange={handleTagChange}
+              />
+              <span className={`w-5 h-5 rounded-full ${tag === 'work' ? 'bg-purple-400' : tag === 'study' ? 'bg-sky-400' : tag === 'entertainment' ? 'bg-pink-400' : 'bg-green-400'}`}></span>
+              <span>{tag}</span>
+            </label>
+          ))}
         </div>
       </form>
     </div>
