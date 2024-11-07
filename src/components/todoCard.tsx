@@ -82,7 +82,7 @@ export const TodoCard = () => {
                             />
                         ))
                     ) : (
-                        <span className="font-mono font-semibold text-gray-500 text-2xl">
+                        <span className="font-mono font-medium text-xl sm:font-semibold text-gray-500 sm:text-2xl">
                             No list found.... {/* Display this if no tasks are available */}
                         </span>
                     )}
