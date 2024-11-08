@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 type TodoFormProps = {
   onClose: () => void;
   onSubmit: (task: { title: string; description: string; tags: string[] }) => void;
+  initialData: unknown;
 };
 
 type TagsType = {
@@ -13,7 +14,7 @@ type TagsType = {
   family: boolean;
 };
 
-export const TodoForm: React.FC<TodoFormProps> = ({ onClose, onSubmit }) => {
+export const TodoForm: React.FC<TodoFormProps> = ({ onClose, onSubmit,initialData }) => {
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [tags, setTags] = useState<TagsType>({
@@ -92,7 +93,7 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onClose, onSubmit }) => {
             <label
               key={tag}
               htmlFor={tag}
-              className={`relative inline-flex items-center cursor-pointer gap-x-1 px-2 py-1 rounded-lg transition-all duration-300 ease-in-out ${
+              className={`relative inline-flex items-center cursor-pointer gap-x-1 px-2 py-1 rounded-lg transition-all duration-300 ease-in-out text-xs font-medium sm:text-base ${
                 tags[tag as keyof TagsType] ? 'bg-blue-200' : 'bg-gray-100'
               }`}
             >
