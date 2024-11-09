@@ -1,5 +1,5 @@
 "use client";
-import { TodoCard } from "@/components/TodoCard";
+import { TodoCard } from "../components/TodoCard";
 
 export default function Home() {
   return (
