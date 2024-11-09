@@ -16,6 +16,10 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Todo List",
   description: "Organize tasks and boost productivity with a simple and intuitive to-do list app.",
+  other:{
+    "google-site-verification":"XTeqOxGr024MBV1Qbrc1aCAtw2usqitV-Pp3lBnegZ8",
+  }
+ 
 };
 
 export default function RootLayout({
