@@ -36,6 +36,7 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onClose, onSubmit }) => {
       resetForm(); // Reset form after submission
     } catch (error) {
       setError("An error occurred while creating the task. Please try again.");
+      console.log("error",error);
     }
   };
 
