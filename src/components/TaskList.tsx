@@ -13,6 +13,7 @@ export const TaskList: React.FC<TaskListProps> = ({
     deleteTask,
     
 }) => (
+   
     <section className="w-full grid grid-cols-1 sm:grid-cols-2 sm:gap-3 p-1 overflow-y-auto h-full items-start">
         {tasks.length > 0 ? (
             tasks.map((task) => (
@@ -20,7 +21,6 @@ export const TaskList: React.FC<TaskListProps> = ({
                     key={task._id}
                     {...task}
                     onDelete={() => deleteTask(task._id)}
-
                 />
             ))
         ) : (

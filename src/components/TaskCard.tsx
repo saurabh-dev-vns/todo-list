@@ -2,6 +2,7 @@
 import React, { useState} from "react";
 import { TaskCardProps, TAG_COLORS } from "./types";
 
+
 export const TaskCard: React.FC<TaskCardProps> = ({
   title,
   description,
@@ -10,6 +11,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
   onDelete,
 }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+
 
   return (
   <div className="bg-card w-full p-4 rounded-lg shadow-md flex flex-col gap-3">
@@ -65,7 +67,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
           ))}
         </div>
         <span className="cursor-pointer text-blue-500">
-          {completed}
+          {completed ? "Completed" : "Not Completed"}
         </span>
       </div>
     </div>

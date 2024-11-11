@@ -5,6 +5,7 @@ import { Task } from "./types";
 import { fetchTasksAPI, deleteTaskAPI } from "./api";
 import { TagFilter } from "./TagFilter";
 import { TaskList } from "./TaskList";
+import { successMsg } from "./toastMsg";
 
 export const TodoCard = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -22,6 +23,7 @@ export const TodoCard = () => {
 
   const deleteTask = async (id: string) => {
     await deleteTaskAPI(id);
+    successMsg("Task deleted");
     fetchTasks();
   };
 

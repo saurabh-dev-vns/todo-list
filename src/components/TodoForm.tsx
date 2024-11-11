@@ -1,9 +1,9 @@
 // src/components/TodoForm.tsx
 import React, { useState } from "react";
-import { TodoFormProps, TagsType } from "./types"; // Import relevant types
+import { TodoFormProps, TagsType } from "./types"; 
 import { TagSelector } from "./TagSelector";
-import { createTaskAPI } from "./api"; // Import the create task API function
-
+import { createTaskAPI } from "./api";
+import { errorMsg ,successMsg} from "./toastMsg";
 
 export const TodoForm: React.FC<TodoFormProps> = ({ onClose , onSubmit}) => {
   const [title, setTitle] = useState<string>("");
@@ -20,6 +20,13 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onClose , onSubmit}) => {
     e.preventDefault();
 
     if (!title || !description) {
+      errorMsg(
+        !title && !description
+          ? "Both title and description are required!"
+          : !title
+          ? "Title is required!"
+          : "Description is required!"
+      );
       return;
     }
 
@@ -28,12 +35,16 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onClose , onSubmit}) => {
       description,
       tags: Object.keys(tags).filter((tag) => tags[tag as keyof TagsType]),
     };
+
     try {
-      await createTaskAPI(formData); // Call the API function
-      resetForm(); // Reset form after submission
+      await createTaskAPI(formData); 
+      resetForm();
       onSubmit();
+      successMsg("Task is added!");
     } catch (error) {
+      errorMsg("Unable to make task!");
       throw error;
+     
     }
   };
 
@@ -60,7 +71,7 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onClose , onSubmit}) => {
   };
 
   return (
-    <div className="absolute w-full h-screen flex justify-center items-center bg-opacity-50 bg-black left-0 top-0 transition-all duration-500 ease-in-out">
+    <div className="absolute w-full h-screen flex text-gre justify-center items-center bg-opacity-50 bg-black left-0 top-0 transition-all duration-500 ease-in-out">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col max-w-lg w-full m-2 sm:m-0 bg-white overflow-hidden p-8 space-y-4 rounded-lg transition-all duration-500 ease-in-out transform"
