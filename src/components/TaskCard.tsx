@@ -1,25 +1,21 @@
 // /src/components/TaskCard.tsx
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { TaskCardProps, TAG_COLORS } from "./types";
 
 export const TaskCard: React.FC<TaskCardProps> = ({
   title,
   description,
   tags,
-  done,
-  onToggleDone,
+  completed,
   onDelete,
 }) => {
-  const [isDropdownOpen, setDropdownOpen] = useState(false); // State for dropdown visibility
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   return (
-  //  <div className="bg-slate-100 w-full h-auto  p-4 rounded-lg shadow-md flex flex-col gap-3 relative">
-  <div className="bg-slate-100 w-full p-4 rounded-lg shadow-md flex flex-col gap-3 relative">
+  <div className="bg-card w-full p-4 rounded-lg shadow-md flex flex-col gap-3">
    <div className="flex flex-row justify-between items-center">
         <h4
-          className={`font-semibold text-lg ${
-            done ? "line-through text-gray-400" : "text-gray-800"
-          }`}
+          className={`font-semibold text-lg text-gray-800`}
         >
           {title}
         </h4>
@@ -52,9 +48,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
         </span>
       </div>
       <p
-        className={`text-sm ${
-          done ? "line-through text-gray-400" : "text-gray-500"
-        }`}
+        className={`text-sm text-gray-500`}
       >
         {description}
       </p>
@@ -70,8 +64,8 @@ export const TaskCard: React.FC<TaskCardProps> = ({
             ></span>
           ))}
         </div>
-        <span className="cursor-pointer text-blue-500" onClick={onToggleDone}>
-          {done ? "undone" : "done"}
+        <span className="cursor-pointer text-blue-500">
+          {completed}
         </span>
       </div>
     </div>

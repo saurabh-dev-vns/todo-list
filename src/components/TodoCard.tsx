@@ -20,25 +20,6 @@ export const TodoCard = () => {
     fetchTasks();
   }, []);
 
-  const handleFormSubmit = async (
-    task: Omit<Task, "done"|"_id">
-  ) => {
-    setTasks([
-      ...tasks,
-      { ...task, done: false, _id: (tasks.length + 1).toString() },
-    ]);
-    setIsFormOpen(false);
-    fetchTasks();
-  };
-
-  const toggleTaskDone = (id: string) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
-        task._id === id ? { ...task, done: !task.done } : task
-      )
-    );
-  };
-
   const deleteTask = async (id: string) => {
     await deleteTaskAPI(id);
     fetchTasks();
@@ -61,17 +42,16 @@ export const TodoCard = () => {
           Add
         </button>
       </header>
-      <section className="flex flex-col lg:flex-row w-full h-full mt-4 overflow-hidden">
+      <section className="flex flex-col lg:flex-row w-full mt-4 overflow-hidden h-full">
         <TagFilter selectedTag={selectedTag} setSelectedTag={setSelectedTag} />
         <TaskList
           tasks={filteredTasks}
-          toggleTaskDone={toggleTaskDone}
           deleteTask={deleteTask}
         />
         {isFormOpen && (
           <TodoForm
             onClose={() => setIsFormOpen(false)}
-            onSubmit={handleFormSubmit}
+            onSubmit={fetchTasks}
           />
         )}
       </section>

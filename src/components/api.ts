@@ -25,7 +25,7 @@ export const fetchTasksAPI = async (): Promise<Task[]> => {
   }
 };
 
-export const updateTaskAPI = async (id: string, task: Omit<Task, "done">) => {
+export const updateTaskAPI = async (id: string, task: Omit<Task, "completed">) => {
   await api.patch(`/update/${id}`, task);
 };
 
@@ -34,7 +34,7 @@ export const deleteTaskAPI = async (id: string) => {
 };
 
 export const createTaskAPI = async (
-  formData: Omit<Task, "done" | "_id">
+  formData: Omit<Task, "completed" | "_id">
 ): Promise<void> => {
   await api.post("/create", formData);
 };

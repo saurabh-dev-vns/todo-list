@@ -2,7 +2,7 @@
 
 export type TodoFormProps = {
   onClose: () => void;
-  onSubmit: (task: Omit<Task, 'done' | '_id'>) => void;
+  onSubmit: () => void;
 };
 
 export type TagsType = {
@@ -17,7 +17,7 @@ export type Task = {
   title: string;
   description: string;
   tags: string[];
-  done: boolean;
+  completed: boolean;
   _id: string;
 };
 
@@ -25,8 +25,7 @@ export type TaskCardProps = {
   title: string;
   description: string;
   tags: string[];
-  done: boolean;
-  onToggleDone: () => void;
+  completed:boolean;
   onDelete: () => void;
 };
 

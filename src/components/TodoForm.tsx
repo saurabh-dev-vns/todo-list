@@ -4,7 +4,8 @@ import { TodoFormProps, TagsType } from "./types"; // Import relevant types
 import { TagSelector } from "./TagSelector";
 import { createTaskAPI } from "./api"; // Import the create task API function
 
-export const TodoForm: React.FC<TodoFormProps> = ({ onClose, onSubmit }) => {
+
+export const TodoForm: React.FC<TodoFormProps> = ({ onClose , onSubmit}) => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [tags, setTags] = useState<TagsType>({
@@ -13,14 +14,12 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onClose, onSubmit }) => {
     entertainment: false,
     family: false,
   });
-  const [error, setError] = useState<string>("");
 
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!title || !description) {
-      setError("Title and Description are required.");
       return;
     }
 
@@ -29,14 +28,12 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onClose, onSubmit }) => {
       description,
       tags: Object.keys(tags).filter((tag) => tags[tag as keyof TagsType]),
     };
-
     try {
       await createTaskAPI(formData); // Call the API function
-      onSubmit(formData); // Pass the form data back to TodoCard
       resetForm(); // Reset form after submission
+      onSubmit();
     } catch (error) {
-      setError("An error occurred while creating the task. Please try again.");
-      console.log("error",error);
+      throw error;
     }
   };
 
@@ -59,7 +56,6 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onClose, onSubmit }) => {
       entertainment: false,
       family: false,
     });
-    setError("");
     onClose();
   };
 
@@ -84,9 +80,6 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onClose, onSubmit }) => {
             Add
           </button>
         </div>
-
-        {error && <p className="text-red-500 text-sm">{error}</p>}
-
         <label
           className="font-semibold font-mono text-stone-600 text-xl"
           htmlFor="title"
