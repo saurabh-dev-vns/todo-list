@@ -34,7 +34,7 @@ export const TodoCard = () => {
   return (
     <div className="bg-white h-full max-w-full container flex flex-col p-2 sm:p-4">
       <header className="flex justify-between w-full p-1">
-        <h3 className="font-black text-2xl text-gray-600">Todo List</h3>
+        <a href="/" className="font-black text-2xl text-gray-600">Todo List</a>
         <button
           onClick={() => {
             setIsFormOpen(true);

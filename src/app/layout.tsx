@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   description: "Organize tasks and boost productivity with a simple and intuitive to-do list app.",
   other:{
     "google-site-verification":"XTeqOxGr024MBV1Qbrc1aCAtw2usqitV-Pp3lBnegZ8",
+    "viewport":"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
   }
  
 };
@@ -30,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased max-w-full relative`}
+        className={`${geistSans.variable} ${geistMono.variable}  max-w-full relative overflow-hidden`}
       >
         {children}
       </body>

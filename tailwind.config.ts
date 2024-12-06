@@ -9,8 +9,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        card:'#fff9de',
+        card: "#fff9de",
       },
+      backgroundImage: {
+        backgroundImage:
+          "linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)",
+      },
+      
     },
   },
   plugins: [],
