@@ -6,6 +6,7 @@ import { fetchTasksAPI, deleteTaskAPI } from "./api";
 import { TagFilter } from "./TagFilter";
 import { TaskList } from "./TaskList";
 import { successMsg } from "./toastMsg";
+import Link from "next/link";
 
 export const TodoCard = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -34,7 +35,7 @@ export const TodoCard = () => {
   return (
     <div className="bg-white h-full max-w-full container flex flex-col p-2 sm:p-4">
       <header className="flex justify-between w-full p-1">
-        <a href="/" className="font-black text-2xl text-gray-600">Todo List</a>
+        <Link href="/" className="font-black text-2xl text-gray-600">Todo List</Link>
         <button
           onClick={() => {
             setIsFormOpen(true);

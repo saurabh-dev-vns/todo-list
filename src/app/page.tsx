@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 export default function LandingPage() {
   return (
     <main className="relative flex m-3 sm:m-1 max-w-full w-full justify-center items-center h-svh overflow-hidden">
@@ -8,7 +10,7 @@ export default function LandingPage() {
             <p className="text-center text-lg text-slate-500 py-7">             
 A dynamic Next.js to-do app with features to add, edit, delete, mark tasks as complete/incomplete, organize by specific tags, and view tasks filtered by tags.
                 </p>
-            <a href="/todo" className="bg-black text-white py-2 px-3 rounded-md">Get Started</a>
+            <Link href="/todo" className="bg-black text-white py-2 px-3 rounded-md">Get Started</Link>
         </div>
     </main>
   );
