@@ -12,12 +12,12 @@ export const TagFilter: React.FC<TagFilterProps> = ({
   setSelectedTag,
 }) => {
   return (
-    <section className="flex flex-row lg:flex-col w-full  lg:w-[20%] p-1 gap-y-2">
+    <section className="flex my-1 lg:my-0 lg:mr-1 flex-row lg:flex-col w-full justify-around lg:justify-normal lg:w-[20%] p-1 gap-y-2 bg-slate-50">
       {Object.entries(TAG_COLORS).map(([tag, colorClass]) => (
         <div
           key={tag}
-          className={`flex items-center p-2 ml-2 rounded-lg cursor-pointer ${
-            selectedTag === tag ? "bg-gray-100" : "bg-gray-50"
+          className={`flex items-center p-2 rounded-lg cursor-pointer ${
+            selectedTag === tag ? "bg-gray-200" : "bg-gray-100"
           }`}
           onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
         >
