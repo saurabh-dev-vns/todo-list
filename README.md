@@ -1,4 +1,18 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js To-Do Application
+
+This is a dynamic and responsive to-do application built with Next.js and TypeScript.
+
+## Description
+
+A simple yet powerful to-do application that allows users to manage their tasks effectively. The app provides features to add, delete, and mark tasks as complete or incomplete. Tasks can be organized by specific tags, and users can view tasks filtered by these tags.
+
+## Features
+
+- **Add Tasks**: Quickly add new tasks to your to-do list.
+- **Delete Tasks**: Remove tasks that are no longer needed.
+- **Tagging**: Organize tasks by assigning one or more tags.
+- **Filter by Tag**: View a filtered list of tasks based on a selected tag.
+- **Responsive Design**: The application is designed to work seamlessly on both desktop and mobile devices.
 
 ## Getting Started
 
@@ -16,18 +30,30 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## File Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+.
+├── public/
+│   └── ... # Static assets
+├── src/
+│   ├── app/
+│   │   ├── todo/
+│   │   │   └── page.tsx      # Main to-do list page
+│   │   ├── layout.tsx        # Root layout
+│   │   └── page.tsx          # Landing page
+│   ├── components/
+│   │   ├── TodoCard.tsx      # Main component for the to-do list
+│   │   ├── TodoForm.tsx      # Form for adding new tasks
+│   │   ├── TaskList.tsx      # Component to display the list of tasks
+│   │   ├── TagFilter.tsx     # Component for filtering tasks by tag
+│   │   ├── api.ts            # Functions for interacting with the backend API
+│   │   └── types.ts          # TypeScript type definitions
+├── .gitignore
+├── next.config.ts
+├── package.json
+└── README.md
+```
 
 ## Deploy on Vercel
 
